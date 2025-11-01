@@ -1,0 +1,487 @@
+.card {
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2c3e50;
+    /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+    }
+    
+    .card-front, .card-back {
+    max-width: 800px;
+    margin: 0 auto;
+    }
+    
+    .lesson-info {
+    background: #fffbf0;
+    color: #8b6914;
+    padding: 12px 20px;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-left: 4px solid #f4d03f;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(244, 208, 63, 0.15);
+    }
+    
+    .grammar-pattern {
+    background: #fff5f5;
+    color: #c53030;
+    padding: 16px 24px;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: bold;
+    border-left: 5px solid #fc8181;
+    border-radius: 6px;
+    box-shadow: 0 3px 12px rgba(252, 129, 129, 0.15);
+    }
+    
+    .sentence-placeholder {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px 0;
+    padding: 24px;
+    background: #fffaf0;
+    box-shadow: 0 3px 15px rgba(237, 137, 54, 0.1);
+    border-left: 5px solid #ed8936;
+    border-radius: 6px;
+    }
+    
+    .sentence-complete {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 24px 0;
+    padding: 24px;
+    background: #f0fff4;
+    box-shadow: 0 3px 15px rgba(56, 178, 172, 0.1);
+    border-left: 5px solid #38b2ac;
+    border-radius: 6px;
+    }
+    
+    .reading-furigana {
+    font-size: 18px;
+    text-align: center;
+    margin: 16px 0;
+    color: #4a5568;
+    background: #f7fafc;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    }
+    
+    .translation {
+    font-size: 18px;
+    text-align: center;
+    margin: 16px 0;
+    padding: 16px;
+    background: #f0fdfa;
+    border-left: 4px solid #14b8a6;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(20, 184, 166, 0.1);
+    }
+    
+    .formation-hint {
+    margin: 20px 0;
+    padding: 16px;
+    background: #fefefe;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 6px;
+    border: 1px solid #f1f5f9;
+    }
+    
+    .audio-section {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    margin: 20px 0;
+    padding: 12px;
+    background: #fefcbf;
+    border-left: 4px solid #eab308;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(234, 179, 8, 0.1);
+    }
+    
+    .grammar-section {
+    margin: 28px 0;
+    padding: 24px;
+    background: #ffffff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
+    }
+    
+    .grammar-section h3 {
+    color: #1e293b;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    }
+    
+    .formation {
+    margin: 16px 0;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    }
+    
+    .style-notes, .explanation-zh, .meaning-zh, .meaning-en {
+    margin: 12px 0;
+    padding: 12px 16px;
+    background: #eff6ff;
+    border-left: 3px solid #3b82f6;
+    border-radius: 4px;
+    }
+    
+    .additional-notes, .vocabulary-section, .detailed-section {
+    margin: 24px 0;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
+    }
+    
+    .additional-notes h3, .vocabulary-section h3, .detailed-section h3 {
+    color: #7c3aed;
+    border-bottom: 2px solid #a78bfa;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    }
+    
+    .notes-content, .vocab-content, .detailed-content {
+    background: #faf5ff;
+    padding: 14px;
+    border-left: 3px solid #a78bfa;
+    border-radius: 4px;
+    }
+    
+    /* Grammar formation styling */
+    .grammar-connection {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    line-height: 1.8;
+    }
+    
+    .g-block {
+    display: inline-block;
+    padding: 3px 8px;
+    margin: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    }
+    
+    .wt-noun { 
+    background-color: #fef3c7; 
+    color: #92400e; 
+    }
+    .wt-verb { 
+    background-color: #dcfce7; 
+    color: #166534; 
+    }
+    .wt-i-adj { 
+    background-color: #fce7f3; 
+    color: #be185d; 
+    }
+    .wt-na-adj { 
+    background-color: #ede9fe; 
+    color: #6b21a8; 
+    }
+    .particle { 
+    background-color: #e0e7ff; 
+    color: #3730a3; 
+    }
+    .conjugation { 
+    background-color: #dbeafe; 
+    color: #1e40af; 
+    }
+    .grammar-point { 
+    background-color: #fed7d7; 
+    color: #c53030; 
+    font-weight: bold; 
+    }
+    .wt-plain-form { 
+    background-color: #d1fae5; 
+    color: #047857; 
+    }
+    
+    .strikethrough-da { text-decoration: line-through; }
+    .arrow { color: #ea580c; font-weight: bold; }
+    
+    /* Responsive design */
+    @media (max-width: 600px) {
+    .card { padding: 15px; font-size: 16px; }
+    .sentence-placeholder, .sentence-complete { font-size: 20px; }
+    .grammar-pattern { font-size: 18px; }
+    /* Mobile: optimize grammar blocks layout */
+    .grammar-connection {
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    gap: 4px;
+    }
+    .grammar-connection .g-block,
+    .grammar-connection .grammar-point,
+    .grammar-connection .conjugation,
+    .grammar-connection .particle {
+    font-size: 0.85em;
+    padding: 2px 4px;
+    margin: 0;
+    }
+    }
+    
+    /* Rich Grammar Formation Styles */
+    .grammar-connection {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-radius: 6px;
+    font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+    line-height: 1.6;
+    margin: 8px 0;
+    max-width: 100%;
+    border: 1px solid #e2e8f0;
+    }
+    
+    .g-block {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    margin: 1px 2px;
+    font-size: 0.9em;
+    font-weight: 500;
+    white-space: nowrap;
+    border-radius: 4px;
+    }
+    
+    /* Ensure each token stays intact */
+    .grammar-connection .g-block,
+    .grammar-connection .grammar-point,
+    .grammar-connection .conjugation,
+    .grammar-connection .particle,
+    .grammar-connection .arrow {
+    white-space: nowrap;
+    flex: 0 0 auto;
+    }
+    
+    .wt-noun {
+    background-color: #fef3c7;
+    color: #92400e;
+    }
+    
+    .wt-verb {
+    background-color: #dcfce7;
+    color: #166534;
+    }
+    
+    .wt-i-adj {
+    background-color: #fce7f3;
+    color: #be185d;
+    }
+    
+    .wt-na-adj {
+    background-color: #ede9fe;
+    color: #6b21a8;
+    }
+    
+    .wt-plain-form {
+    background-color: #d1fae5;
+    color: #047857;
+    }
+    
+    .conjugation {
+    background-color: #dbeafe;
+    color: #1e40af;
+    }
+    
+    .particle {
+    background-color: #e0e7ff;
+    color: #3730a3;
+    }
+    
+    .grammar-point {
+    background-color: #fed7d7;
+    color: #c53030;
+    font-weight: bold;
+    padding: 4px 12px;
+    }
+    
+    .strikethrough-da {
+    text-decoration: line-through;
+    color: #dc2626;
+    }
+    
+    .arrow {
+    color: #ea580c;
+    font-weight: bold;
+    margin: 0 4px;
+    }
+    
+    /* Night mode adjustments */
+    body.night_mode .grammar-connection {
+    background: #334155;
+    border-color: #475569;
+    color: #cbd5e1;
+    }
+    
+    /* Night mode adjustments for all elements */
+    body.night_mode .card {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: #cbd5e1;
+    }
+    
+    body.night_mode .lesson-info {
+    background: #451a03;
+    color: #fcd34d;
+    border-left: 4px solid #f59e0b;
+    }
+    
+    body.night_mode .grammar-pattern {
+    background: #450a0a;
+    color: #fca5a5;
+    border-left: 5px solid #ef4444;
+    }
+    
+    body.night_mode .sentence-placeholder,
+    body.night_mode .sentence-complete,
+    body.night_mode .grammar-section,
+    body.night_mode .additional-notes,
+    body.night_mode .vocabulary-section,
+    body.night_mode .detailed-section {
+    background: #475569;
+    color: #cbd5e1;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    border-color: #64748b;
+    }
+    
+    body.night_mode .sentence-placeholder {
+    background: #451a03;
+    border-left: 5px solid #f97316;
+    }
+    
+    body.night_mode .sentence-complete {
+    background: #022c22;
+    border-left: 5px solid #14b8a6;
+    }
+    
+    body.night_mode .reading-furigana {
+    background: #334155;
+    color: #94a3b8;
+    border-color: #475569;
+    }
+    
+    body.night_mode .translation {
+    background: #022c22;
+    color: #5eead4;
+    border-left: 4px solid #14b8a6;
+    }
+    
+    body.night_mode .audio-section {
+    background: #451a03;
+    border-left: 4px solid #f59e0b;
+    color: #fcd34d;
+    }
+    
+    body.night_mode .formation {
+    background: #334155;
+    border-color: #475569;
+    }
+    
+    body.night_mode .style-notes,
+    body.night_mode .explanation-zh,
+    body.night_mode .explanation-ja,
+    body.night_mode .meaning-zh,
+    body.night_mode .meaning-en {
+    background: #1e3a8a;
+    border-left: 3px solid #3b82f6;
+    color: #dbeafe;
+    }
+    
+    body.night_mode .grammar-section h3,
+    body.night_mode .additional-notes h3,
+    body.night_mode .vocabulary-section h3,
+    body.night_mode .detailed-section h3 {
+    color: #93c5fd;
+    border-bottom: 2px solid #3b82f6;
+    }
+    
+    body.night_mode .notes-content,
+    body.night_mode .vocab-content,
+    body.night_mode .detailed-content {
+    background: #581c87;
+    border-left: 3px solid #a78bfa;
+    color: #ede9fe;
+    }
+    
+    body.night_mode .wt-noun {
+    background-color: #451a03;
+    color: #fcd34d;
+    }
+    
+    body.night_mode .wt-verb {
+    background-color: #022c22;
+    color: #6ee7b7;
+    }
+    
+    body.night_mode .wt-i-adj {
+    background-color: #500724;
+    color: #f9a8d4;
+    }
+    
+    body.night_mode .wt-na-adj {
+    background-color: #3c1361;
+    color: #c4b5fd;
+    }
+    
+    body.night_mode .wt-plain-form {
+    background-color: #022c22;
+    color: #6ee7b7;
+    }
+    
+    body.night_mode .conjugation {
+    background-color: #172554;
+    color: #93c5fd;
+    }
+    
+    body.night_mode .particle {
+    background-color: #312e81;
+    color: #c7d2fe;
+    }
+    
+    body.night_mode .grammar-point {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+    }
+    
+    /* Grammar highlighting in sentences */
+    .grammar-highlight {
+    background-color: #fef3c7 !important;
+    font-weight: bold !important;
+    padding: 2px 6px !important;
+    color: #92400e !important;
+    border-radius: 3px !important;
+    }
+    
+    body.night_mode .grammar-highlight {
+    background-color: #451a03 !important;
+    color: #fcd34d !important;
+    }
+    
+    /* Explanations container */
+    .explanations {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    }
+    
+    .explanations > div {
+    margin: 0;
+    padding: 8px 12px;
+    }

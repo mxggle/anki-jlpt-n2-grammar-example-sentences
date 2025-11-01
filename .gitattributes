@@ -1,0 +1,23 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Audio files
+*.mp3 binary
+*.wav binary
+*.ogg binary
+
+# Font files
+*.otf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# Anki package files
+*.apkg binary
+
+# CSV files with UTF-8 encoding
+*.csv text eol=lf encoding=utf-8
+
+# HTML and CSS
+*.html text eol=lf
+*.css text eol=lf

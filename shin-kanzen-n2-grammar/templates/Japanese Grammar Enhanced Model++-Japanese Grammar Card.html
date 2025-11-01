@@ -1,0 +1,44 @@
+<div class="card-front">
+  <div class="lesson-info">{{LessonInfo}}</div>
+  <div class="sentence-placeholder">{{FrontSentence}}</div>
+</div>
+<div class="card-back">
+  <div class="lesson-info">{{LessonInfo}}{{GrammarPattern}}</div>
+  <div class="sentence-complete">{{BackSentence}}</div>
+  <div class="translation">{{Translation}}</div>
+
+  {{#AudioFile}}
+  <div class="audio-section">
+    {{AudioFile}}
+  </div>
+  {{/AudioFile}}
+
+  <div class="grammar-section">
+    <h3>语法说明</h3>
+    <div class="explanations">
+      {{#RichGrammarFormation}}<div class="formation">{{RichGrammarFormation}}</div>{{/RichGrammarFormation}}
+      {{#ExplanationJapanese}}<div class="explanation-ja">{{ExplanationJapanese}}</div>{{/ExplanationJapanese}}
+      {{#ExplanationChinese}}<div class="explanation-zh">{{ExplanationChinese}}</div>{{/ExplanationChinese}}
+      {{#StyleNotes}}<div class="style-notes">{{StyleNotes}}</div>{{/StyleNotes}}
+    </div>
+  </div>
+  {{#AdditionalNotesZh}}
+
+  {{#AdditionalNotes}}
+  <div class="additional-notes">
+    <h3>补充说明</h3>
+    <div class="notes-content">{{AdditionalNotes}}</div>
+    <div class="notes-content">{{AdditionalNotesZh}}</div>
+
+  </div>
+  {{/AdditionalNotes}}
+  {{/AdditionalNotesZh}}
+
+
+  {{#DetailedExplanation}}
+  <div class="detailed-section">
+    <h3>详细解析</h3>
+    <div class="detailed-content">{{DetailedExplanation}}</div>
+  </div>
+  {{/DetailedExplanation}}
+</div>
