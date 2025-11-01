@@ -1,5 +1,15 @@
 # 新完全掌握N2语法例句 (Shin Kanzen Master Grammar N2)
 
+<div align="center">
+
+[![AnkiWeb](https://img.shields.io/badge/AnkiWeb-Deck-blue?style=for-the-badge&logo=anki)](https://ankiweb.net/shared/info/1584745637)
+[![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=for-the-badge&logo=github)](https://github.com/mxggle/anki-jlpt-n2-grammar-example-sentences)
+[![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=for-the-badge)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Cards](https://img.shields.io/badge/Cards-1372-green?style=for-the-badge)](https://github.com/mxggle/anki-jlpt-n2-grammar-example-sentences)
+[![Audio](https://img.shields.io/badge/Audio-531-orange?style=for-the-badge)](https://github.com/mxggle/anki-jlpt-n2-grammar-example-sentences)
+
+</div>
+
 这是一个基于《新完全掌握日本语能力考试N2级语法》教材的Anki记忆卡牌项目。
 
 ## 📸 卡牌预览
@@ -165,4 +175,3 @@
 ---
 
 祝学习顺利！がんばって！
-# anki-jlpt-n2-grammar-example-sentences
