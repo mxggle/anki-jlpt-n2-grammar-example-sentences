@@ -2,6 +2,33 @@
 
 这是一个基于《新完全掌握日本语能力考试N2级语法》教材的Anki记忆卡牌项目。
 
+## 📸 卡牌预览
+
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%">
+        <img src="https://github.com/user-attachments/assets/11f65318-2a92-4474-a417-3348624c3b26" alt="卡牌正面" />
+        <p align="center"><em>卡牌正面 - 语法高亮</em></p>
+      </td>
+      <td width="50%">
+        <img src="https://github.com/user-attachments/assets/fbc19941-fb20-4615-b8d0-75ed23256db1" alt="卡牌背面" />
+        <p align="center"><em>卡牌背面 - 假名与翻译</em></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="50%">
+        <img src="https://github.com/user-attachments/assets/a2cf57b9-57b3-45f3-9dc3-66f6133992e5" alt="语法接续" />
+        <p align="center"><em>语法接续说明</em></p>
+      </td>
+      <td width="50%">
+        <img src="https://github.com/user-attachments/assets/fc0ada2f-564d-4986-8b7e-743be2c85b29" alt="逐词精解" />
+        <p align="center"><em>逐词详细精解</em></p>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ## 项目简介
 
 本项目包含了《新完全掌握N2语法》书中的所有例句，每个句子都配有详细的语法解释、词汇分析和音频发音。适合准备JLPT N2考试的学习者系统地掌握N2语法点。
