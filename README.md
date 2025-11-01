@@ -105,7 +105,7 @@
 
 ## 下载发布版
 
-从 [Releases](https://github.com/YOUR_USERNAME/YOUR_REPO/releases) 页面下载最新的 `.apkg` 文件，直接导入Anki使用。
+从 [Releases](https://github.com/mxggle/anki-jlpt-n2-grammar-example-sentences/releases) 页面下载最新的 `.apkg` 文件，直接导入Anki使用。
 
 注意：**请下载 `.apkg` 文件，不要下载源代码 zip 文件**。
 
