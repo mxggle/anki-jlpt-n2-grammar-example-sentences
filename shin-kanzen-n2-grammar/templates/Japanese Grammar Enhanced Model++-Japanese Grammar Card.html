@@ -2,6 +2,7 @@
   <div class="lesson-info">{{LessonInfo}}</div>
   <div class="sentence-placeholder">{{FrontSentence}}</div>
 </div>
+
 <div class="card-back">
   <div class="lesson-info">{{LessonInfo}}{{GrammarPattern}}</div>
   <div class="sentence-complete">{{BackSentence}}</div>
@@ -22,18 +23,16 @@
       {{#StyleNotes}}<div class="style-notes">{{StyleNotes}}</div>{{/StyleNotes}}
     </div>
   </div>
-  {{#AdditionalNotesZh}}
 
+  {{#AdditionalNotesZh}}
   {{#AdditionalNotes}}
   <div class="additional-notes">
     <h3>补充说明</h3>
     <div class="notes-content">{{AdditionalNotes}}</div>
     <div class="notes-content">{{AdditionalNotesZh}}</div>
-
   </div>
   {{/AdditionalNotes}}
   {{/AdditionalNotesZh}}
-
 
   {{#DetailedExplanation}}
   <div class="detailed-section">
