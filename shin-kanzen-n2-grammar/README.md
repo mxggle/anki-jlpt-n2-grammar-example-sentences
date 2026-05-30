@@ -9,8 +9,14 @@
 
 ## 文件说明
 
-### notes.csv
-包含所有卡牌的数据，字段包括：
+### notes.json（唯一数据源）
+所有卡牌数据的**唯一可编辑来源**。需要改卡片内容、加卡片时编辑此文件。
+每条笔记会省略空字段以便阅读。`lineNumber` 是卡片身份（决定 Anki GUID），不可改动或重复。
+
+### notes.csv（生成产物，勿手改）
+由 `notes.json` 通过 `python3 data_tools.py to-csv` 生成；`package_anki.py` 打包前也会自动重建。
+**不要直接编辑此文件**，任何手改都会在下次打包时被覆盖。
+字段包括：
 - 牌组名称（Deck）
 - 例句（Sentence）
 - 语法点（Grammar Point）
@@ -36,6 +42,8 @@
 - **Japanese Grammar Enhanced Model++-styles.css**: 卡牌样式表
 
 ## 导入说明
+
+> 提示：若刚改过 `notes.json`，先运行 `python3 data_tools.py to-csv` 重新生成 `notes.csv`（或直接 `python3 package_anki.py` 生成 .apkg）。
 
 1. 在Anki中选择"文件" → "导入"
 2. 选择 `notes.csv` 文件
