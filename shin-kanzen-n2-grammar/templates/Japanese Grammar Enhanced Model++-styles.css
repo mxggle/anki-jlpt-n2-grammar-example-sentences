@@ -64,6 +64,44 @@
   border-top: 1px solid #EDF2F7;
 }
 
+/* Translation Toggle Button */
+.toggle-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4A5568;
+  background-color: #EDF2F7;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.toggle-btn:hover {
+  background-color: #E2E8F0;
+}
+
+.toggle-btn:active {
+  background-color: #CBD5E0;
+}
+
+/* Hidden by default on front */
+.front-translation {
+  display: none;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #EDF2F7;
+  font-size: 0.9em;
+  color: #4A5568;
+}
+
+.front-translation.is-visible {
+  display: block;
+}
+
 /* Interactive elements: Audio */
 .audio-section {
   margin: 20px 0;
@@ -165,6 +203,21 @@ h3 {
 }
 
 .nightMode .translation, .night_mode .translation {
+  border-top-color: #4A5568;
+  color: #CBD5E0;
+}
+
+.nightMode .toggle-btn, .night_mode .toggle-btn {
+  background-color: #1A202C;
+  color: #A0AEC0;
+  border-color: #4A5568;
+}
+
+.nightMode .toggle-btn:hover, .night_mode .toggle-btn:hover {
+  background-color: #2D3748;
+}
+
+.nightMode .front-translation, .night_mode .front-translation {
   border-top-color: #4A5568;
   color: #CBD5E0;
 }

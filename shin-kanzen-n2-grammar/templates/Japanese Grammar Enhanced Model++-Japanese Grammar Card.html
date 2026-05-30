@@ -1,7 +1,44 @@
 <div class="card-front">
   <div class="lesson-info">{{LessonInfo}}</div>
   <div class="sentence-placeholder">{{FrontSentence}}</div>
+  {{#Translation}}
+  <div class="toggle-btn" id="translation-toggle-btn" onclick="toggleTranslation()">翻译</div>
+  <div class="front-translation" id="translation-content">{{Translation}}</div>
+  {{/Translation}}
 </div>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'n2_translation_visible';
+
+  function applyState(visible) {
+    var content = document.getElementById('translation-content');
+    var btn = document.getElementById('translation-toggle-btn');
+    if (!content) return;
+    if (visible) {
+      content.classList.add('is-visible');
+      if (btn) btn.classList.add('active');
+    } else {
+      content.classList.remove('is-visible');
+      if (btn) btn.classList.remove('active');
+    }
+  }
+
+  // Restore saved state on card load
+  var saved = localStorage.getItem(STORAGE_KEY);
+  // Default: hidden (null = first time)
+  applyState(saved === 'true');
+
+  window.toggleTranslation = function () {
+    var content = document.getElementById('translation-content');
+    if (!content) return;
+    var nowVisible = content.classList.contains('is-visible');
+    var next = !nowVisible;
+    applyState(next);
+    localStorage.setItem(STORAGE_KEY, next ? 'true' : 'false');
+  };
+})();
+</script>
 
 <div class="card-back">
   <div class="lesson-info">{{LessonInfo}}{{GrammarPattern}}</div>
