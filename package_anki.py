@@ -2,6 +2,8 @@ import genanki
 import csv
 import os
 
+import data_tools  # CSV is a generated artifact; notes.json is the source of truth
+
 # ============================================================
 # IMPORTANT: These IDs MUST match the original JLPT_N2.apkg
 # to ensure cards UPDATE instead of DUPLICATE on re-import.
@@ -100,6 +102,11 @@ def safe_get(row, index):
     """Safely get a column value, return '' if index out of range."""
     return row[index].strip() if len(row) > index else ''
 
+# Single source of truth is notes.json. Regenerate notes.csv from it so the
+# CSV consumed below is always in sync (never edit notes.csv by hand).
+print("Regenerating notes.csv from notes.json (source of truth)...")
+data_tools.json_to_csv()
+
 # Read notes.csv
 CSV_FILE = 'shin-kanzen-n2-grammar/notes.csv'
 media_files = []
@@ -173,7 +180,7 @@ with open(CSV_FILE, 'r', encoding='utf-8') as f:
 all_decks = list(decks.values())
 package = genanki.Package(all_decks)
 package.media_files = media_files
-output_file = 'Shin_Kanzen_Master_Grammar_N2_v1.6.0.apkg'
+output_file = 'Shin_Kanzen_Master_Grammar_N2_v1.7.0.apkg'
 package.write_to_file(output_file)
 
 total_notes = sum(len(d.notes) for d in all_decks)

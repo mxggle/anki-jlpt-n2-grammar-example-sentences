@@ -10,11 +10,14 @@
 ```
 Shin Kanzen Master Grammar N2/
 ├── AGENT.md                          # 本文档
-├── package_anki.py                   # 主打包脚本（Python）
-├── Shin_Kanzen_Master_Grammar_N2_v1.6.0.apkg  # 输出文件（运行后生成）
+├── package_anki.py                   # 主打包脚本（Python，打包前会自动从 JSON 重建 CSV）
+├── data_tools.py                     # JSON ↔ CSV 转换 / 校验工具
+├── verify_apkg.py                    # 校验打包结果（Model ID / 字段数 / GUID）
+├── Shin_Kanzen_Master_Grammar_N2_v1.7.0.apkg  # 输出文件（运行后生成）
 ├── JLPT_N2.apkg                      # 参考原始包（勿删）
 └── shin-kanzen-n2-grammar/
-    ├── notes.csv                     # 所有卡片数据（22列 CSV）
+    ├── notes.json                    # ✅ 唯一数据源（手动编辑这个）
+    ├── notes.csv                     # ⚙️ 生成产物（由 notes.json 自动生成，勿手改）
     ├── medias/                       # 所有音频文件（531个 MP3）
     │   └── lesson_XX_sub_XX_line_XXX.mp3
     └── templates/
@@ -117,6 +120,36 @@ n2-line-{LineNumber}
 
 ---
 
+## 数据源工作流（重要）
+
+**`notes.json` 是唯一数据源**，`notes.csv` 是从它生成的产物，**永远不要手动改 CSV**。
+
+```
+notes.json  ──(data_tools.py to-csv)──▶  notes.csv  ──(package_anki.py)──▶  .apkg
+   ▲ 编辑这个                              ⚙️ 生成物                          📦 输出
+```
+
+`package_anki.py` 在打包前会自动调用 `data_tools.json_to_csv()` 重建 CSV，所以正常流程只需：
+
+```bash
+# 1. 编辑 notes.json
+# 2. 直接打包（会自动重建 CSV）
+python3 package_anki.py
+```
+
+### data_tools.py 命令
+
+```bash
+python3 data_tools.py to-json   # notes.csv  → notes.json（仅首次/迁移时用）
+python3 data_tools.py to-csv    # notes.json → notes.csv（打包脚本会自动调用）
+python3 data_tools.py verify    # 校验 notes.json → CSV 的值与当前 notes.csv 一致
+```
+
+- JSON 中每条笔记会**省略空字段**（更易读）；`to-csv` 会把缺失字段补回 `""`，CSV 列结构（22列）保持不变。
+- 列结构 / 字段集合**不可增删**（见下文"关键约束"），否则破坏 Anki 更新匹配。
+
+---
+
 ## 打包脚本说明（package_anki.py）
 
 ### 运行方式
@@ -134,6 +167,7 @@ pip install genanki
 
 ### 核心逻辑
 
+0. **从 `notes.json` 重建 `notes.csv`**（调用 `data_tools.json_to_csv()`，保证 CSV 不过期）
 1. **读取 CSS 和 HTML 模板**（`templates/` 目录）
 2. **定义 Model**（固定 `MODEL_ID = 1607392322`，20个字段，顺序固定）
 3. **逐行读取 `notes.csv`**，跳过 `#` 开头的元数据行
@@ -141,7 +175,7 @@ pip install genanki
 5. **构建 GUID**：`f'n2-line-{line_number}'`（`line_number = col[20]`）
 6. **按 `col[0]` 分组**，为每个 Lesson 创建独立子牌组
 7. **收集音频文件**：从 `col[7]` 解析 `[sound:xxx.mp3]` 并检查文件是否存在
-8. **输出**：`Shin_Kanzen_Master_Grammar_N2_v1.6.0.apkg`
+8. **输出**：`Shin_Kanzen_Master_Grammar_N2_v1.7.0.apkg`
 
 ---
 
@@ -191,11 +225,11 @@ applyState(saved !== 'false');
 
 ### ✅ 添加新卡片
 
-1. 在 `notes.csv` 末尾追加新行
-2. `col[0]`：对应牌组名（如 `新完全掌握N2语法例句::Lesson 27`）
-3. `col[20]`（LineNumber）：必须是全局唯一的递增数字（当前最大是 531，新增从 532 开始）
+1. 在 `notes.json` 的 `notes` 数组末尾追加新对象
+2. `deck`：对应牌组名（如 `新完全掌握N2语法例句::Lesson 27`）
+3. `lineNumber`：必须是全局唯一的递增数字（当前最大是 531，新增从 532 开始）— **这是卡片身份，决定 GUID `n2-line-{lineNumber}`，不可与已有重复或改动**
 4. 对应音频文件放入 `shin-kanzen-n2-grammar/medias/`
-5. 运行 `python3 package_anki.py` 重新打包
+5. 运行 `python3 package_anki.py` 重新打包（会自动重建 CSV）
 
 ### ✅ 修改卡片样式
 
@@ -215,7 +249,7 @@ applyState(saved !== 'false');
 修改 `package_anki.py` 最后的：
 
 ```python
-output_file = 'Shin_Kanzen_Master_Grammar_N2_v1.6.0.apkg'
+output_file = 'Shin_Kanzen_Master_Grammar_N2_v1.7.0.apkg'
 ```
 
 ### ✅ 新增字段
@@ -224,42 +258,27 @@ output_file = 'Shin_Kanzen_Master_Grammar_N2_v1.6.0.apkg'
 
 新增字段会改变 Model 结构。需要：
 1. 在 `package_anki.py` 的 `fields=[]` 列表末尾追加新字段（**只能追加到末尾**，不能插入中间）
-2. 在 CSV 对应列填充数据
-3. 在 HTML 模板中用 `{{新字段名}}` 引用
-4. 重新打包
+2. 在 `data_tools.py` 的 `FIELDS` 列表末尾追加 `(新键名, 新列索引)`（保持与 CSV 列顺序一致）
+3. 在 `notes.json` 各笔记中填充新字段值
+4. 在 HTML 模板中用 `{{新字段名}}` 引用
+5. 重新打包
+
+> ⚠️ **不要删除字段/列**（包括目前全空的 `englishMeaning`/`chineseMeaning`/`vocabularyNotes`/`tags`）。
+> 减少 Model 字段集合会导致已安装的卡片匹配失败、变成重复卡。空字段在 JSON 里可省略，但 CSV 列结构必须保持 22 列不变。
 5. 在 Anki 导入时选择"更新笔记模板"
 
 ---
 
 ## 验证打包结果
 
-可以用以下脚本快速验证输出文件是否正确：
+用 `verify_apkg.py` 快速校验输出文件是否符合 Anki 不变量（Model ID / 字段数 / GUID 格式）：
 
-```python
-import zipfile, sqlite3, json, os
-
-os.makedirs('_verify', exist_ok=True)
-with zipfile.ZipFile('Shin_Kanzen_Master_Grammar_N2_v1.6.0.apkg', 'r') as z:
-    z.extractall('_verify')
-
-for name in ['collection.anki21', 'collection.anki2']:
-    db = f'_verify/{name}'
-    if os.path.exists(db):
-        conn = sqlite3.connect(db)
-        cur = conn.cursor()
-        models = json.loads(cur.execute("SELECT models FROM col").fetchone()[0])
-        for mid, m in models.items():
-            print(f"Model ID: {mid}")           # 期望: 1607392322
-            print(f"Fields: {len(m['flds'])}")  # 期望: 20
-        cur.execute("SELECT COUNT(*) FROM notes")
-        print(f"Notes: {cur.fetchone()[0]}")    # 期望: 531（或更多）
-        cur.execute("SELECT guid FROM notes LIMIT 3")
-        print(f"GUIDs: {[r[0] for r in cur.fetchall()]}")  # 期望: ['n2-line-1', ...]
-        conn.close()
-        break
-
-import shutil; shutil.rmtree('_verify')
+```bash
+python3 verify_apkg.py                 # 校验默认输出文件
+python3 verify_apkg.py path/to.apkg    # 校验指定文件
 ```
+
+期望输出：Model ID = `1607392322`，Fields = `20`，Notes ≥ `531`，GUIDs 形如 `n2-line-1`。
 
 ---
 
@@ -277,5 +296,6 @@ import shutil; shutil.rmtree('_verify')
 
 | 版本 | 变更内容 |
 |------|---------|
+| v1.7.0 | 数据流程重构：`notes.json` 成为唯一数据源，`notes.csv` 改为自动生成产物；新增 `data_tools.py`（JSON↔CSV 转换/校验）与 `verify_apkg.py`（校验 Model ID/字段数/GUID）；`package_anki.py` 打包前自动从 JSON 重建 CSV；`notes.json` 中的 `ttsClassification`（仅用于 TTS 音频生成）在打包时自动剔除，不进 Anki；修复 ID 160-180 缺失的 furigana/翻译/解析字段 |
 | v1.6.0 | 功能更新：卡片正面新增翻译切换按钮，可自由控制显示/隐藏 |
 | v1.5.0 | 修复 MODEL_ID（1584745637 → 1607392322）；修复 GUID 格式（hash → n2-line-N）；字段从13个扩展到20个；添加翻译状态跨卡持久化（localStorage） |
